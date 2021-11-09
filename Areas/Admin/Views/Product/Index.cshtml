@@ -1,0 +1,66 @@
+﻿@using DemoApplication.Models
+@{
+    Layout = "_AdminLayout";
+    var products = ViewBag.ListProduct as List<Product>;
+}
+
+<section class="content">
+    <!-- Row -->
+    <div class="row">
+        <!-- Col -->
+        <div class="col-12">
+            <!-- Card -->
+            <div class="card">
+                <!-- Card Body -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Category</th>
+                                <th>Name</th>
+                                <th>Image</th>
+                                <th>Price</th>
+                                <th>Brand</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var p in products)
+                            {
+                                <tr>
+                                    <td>@p.Id</td>
+                                    <td>@p.Category.Name</td>
+                                    <td>@p.Name</td>
+                                    <td><img src="~/@p.Image" width="40" height="40" /></td>
+                                    <td>@p.Price</td>
+                                    <td>@p.Brand</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>#</th>
+                                <th>Category</th>
+                                <th>Name</th>
+                                <th>Image</th>
+                                <th>Price</th>
+                                <th>Brand</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+@section Scripts {
+    <script>
+        $(function () {
+            $("#example1").DataTable();
+        });
+    </script>
+}

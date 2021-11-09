@@ -1,0 +1,108 @@
+﻿@inject DemoApplication.Data.DemoApplicationContext _context
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@using Newtonsoft.Json
+@using DemoApplication.ViewModels
+
+@{
+    var categories = _context.Category.ToList();
+
+    int amountCartItem = 0;
+
+    var stringSessionCart = HttpContextAccessor.HttpContext.Session.GetString("cart");
+    if(stringSessionCart != null)
+    {
+        var currentListCart = JsonConvert.DeserializeObject<List<CartItemViewModel>>(stringSessionCart);
+        amountCartItem = currentListCart.Count();
+    }
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DemoApplication</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DemoShop</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" style="justify-content: space-between;">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="/Identity/Account/Manage/Index">Hello, @User.Identity.Name</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Cart" asp-action="Index"><i class="fas fa-shopping-cart"></i>(@amountCartItem)</a>
+                            </li>
+                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Account/Logout", new { area = "Identity" })" method="post">
+                                <button type="submit" class="nav-link btn btn-link text-danger">Logout</button>
+                            </form>
+                        }
+
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="/Identity/Account/Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="/Identity/Account/Register">Register</a>
+                            </li>
+                        }
+                    </ul>
+
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+
+                        @if (categories != null)
+                        {
+                            @foreach (var c in categories as List<Category>)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark"
+                                       asp-controller="Home"
+                                       asp-action="GetProductByCategoryId"
+                                       asp-route-id="@c.Id">@c.Name</a>
+                                </li>
+                            }
+                        }
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - DemoApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/detail.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

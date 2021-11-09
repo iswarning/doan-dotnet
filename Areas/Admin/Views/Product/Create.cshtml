@@ -1,0 +1,69 @@
+﻿@using DemoApplication.Areas.Admin.ViewModels
+@using DemoApplication.Areas.Identity.Data
+@inject DemoApplication.Data.DemoApplicationContext _context
+@model ProductViewModel
+@{
+    Layout = "_AdminLayout";
+    var categories = _context.Category.ToList();
+}
+<!--Body-->
+<section class="content">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <form method="post" action="@Context.Request.Path">
+        <div class="form-group">
+            <label for="CategoryId"></label>
+            @if(categories != null)
+            {
+                <select name="CategoryId">
+                    @foreach (var c in categories)
+                    {
+                        <option value="@c.Id" >@c.Name</option>
+                    }
+                </select>
+            }
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.CategoryId)</span>
+        </div>
+        <div class="form-group">
+            <label for="Name">@Html.DisplayNameFor(m => m.Name)</label>
+            <input type="text" class="form-control" id="Name" name="Name" />
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.Name)</span>
+        </div>
+        <div class="form-group">
+            <label for="Description">@Html.DisplayNameFor(m => m.Description)</label>
+            <input type="text" class="form-control" id="Description" name="Description" />
+        </div>
+        <div class="form-group">
+            <label for="Price">@Html.DisplayNameFor(m => m.Price)</label>
+            <input type="number" class="form-control" id="Price" name="Description" value="0"/>
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.Price)</span>
+        </div>
+        <div class="form-group">
+            <label for="Image">@Html.DisplayNameFor(m => m.Image)</label>
+            <input type="file" class="form-control" id="Image" name="Image" />
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.Image)</span>
+        </div>
+        <div class="form-group">
+            <label for="MiniImage1">@Html.DisplayNameFor(m => m.MiniImage1)</label>
+            <input type="file" class="form-control" id="MiniImage1" name="MiniImage1" />
+        </div>
+        <div class="form-group">
+            <label for="MiniImage2">@Html.DisplayNameFor(m => m.MiniImage2)</label>
+            <input type="file" class="form-control" id="MiniImage2" name="MiniImage2" />
+        </div>
+        <div class="form-group">
+            <label for="Brand">@Html.DisplayNameFor(m => m.Brand)</label>
+            <input type="text" class="form-control" id="Brand" name="Brand" />
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.Brand)</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</section>
+<!-- /.Body-->
+@section Scripts {
+    <script>
+        $(function () {
+            $("#example1").DataTable();
+        });
+    </script>
+}
