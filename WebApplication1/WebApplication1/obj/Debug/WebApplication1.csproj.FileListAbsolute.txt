@@ -1,0 +1,11 @@
+F:\DoAnLTWEB\WebApplication1\WebApplication1\bin\WebApplication1.dll
+F:\DoAnLTWEB\WebApplication1\WebApplication1\bin\WebApplication1.pdb
+F:\DoAnLTWEB\WebApplication1\WebApplication1\obj\Debug\WebApplication1.dll
+F:\DoAnLTWEB\WebApplication1\WebApplication1\obj\Debug\WebApplication1.pdb
+D:\DoAnLTWEB\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.CoreCompileInputs.cache
+D:\DoAnLTWEB\WebApplication1\WebApplication1\obj\Debug\WebApplication1.dll
+D:\DoAnLTWEB\WebApplication1\WebApplication1\obj\Debug\WebApplication1.pdb
+D:\DoAnLTWEB\WebApplication1\WebApplication1\bin\WebApplication1.dll.config
+D:\DoAnLTWEB\WebApplication1\WebApplication1\bin\WebApplication1.dll
+D:\DoAnLTWEB\WebApplication1\WebApplication1\bin\WebApplication1.pdb
+D:\DoAnLTWEB\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.AssemblyReference.cache

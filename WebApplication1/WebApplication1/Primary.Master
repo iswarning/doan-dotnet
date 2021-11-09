@@ -1,0 +1,220 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Primary.master.cs" Inherits="WebApplication1.Primary" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">Trang chủ</asp:ContentPlaceHolder>
+    </title>
+    <link rel="shortcut icon" type="image/png" href="image/ico.png"/>
+		
+		<meta charset="utf-8"/>  
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="css/font-awesome.min.css"/>
+		<link rel="stylesheet" href="css/bootstrap-datepicker.min.css"/>
+		<!-- jQuery library -->
+		<script src="js/jquery-3.3.1.min.js"></script>
+
+		<!-- Popper JS -->
+		<script src="js/popper.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datepicker.min.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+		<link href="css/sb-admin.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="Styles/home.css" />
+        <style>
+            .divgiohang
+            {
+                margin:100px 0;
+            }
+            .dienthoai a:hover button
+            {
+                background-color:#fed007;
+                color:navy;
+            }
+            .navbar-dark .navbar-brand 
+            {
+                padding-top:0px;
+            }
+            div.carousel-item img {height:358px;}
+            .gtco-text h5
+            {
+                margin-top:5px;
+                color:slateblue;
+            }
+            .gtco-text a:hover
+            {
+                background-color:#f6cd61;
+                color:white;
+            }
+            .button 
+            {
+                background-color: white; /* Green */
+                border: none;
+                color: black;
+                padding: 16px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                margin: 4px 2px;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+                cursor: pointer;
+                border: 2px solid #f6cd61;
+            }
+            .gtco-text p
+            {
+                color:#851e3e;
+                font-size:15px;
+            }
+            .dropbtn {
+                color:rgba(255,255,255,.5);
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content .sub {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown-content .sub:hover {background-color: #ddd;}
+
+            .dropdown:hover .dropdown-content {display: block;}
+
+            .dropdown:hover .dropbtn {color: #3e8e41;}
+        </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <nav class="navbar navbar-expand-sm bg-dark fixed-top navbar-dark">
+			<button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a  href="Default.aspx" class="navbar-brand"><img src="image/logo4.png" style="width:170px;height:50px;"></a>
+			<div class="collapse navbar-collapse" id="nav-content">   
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link active" href="Default.aspx">Home</a>
+					</li>
+                    <asp:Repeater ID="Repeater1" runat="server">
+                        <ItemTemplate>
+                        <li class="nav-item">
+						    <a class="nav-link" href="loaisp.aspx?MaLoai=<%#Eval("MaLoai") %>">
+                                <%#Eval("TenLoai") %>
+						    </a>						
+					    </li>
+                            </ItemTemplate>
+                    </asp:Repeater>
+                        									
+					<li class="nav-item">						
+							<div class="input-group">
+                                <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server" placeholder="Search for....."></asp:TextBox> 
+                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="image/iconsearch.png" Height="38px" Width="38px" />
+							</div>						
+					</li>
+					<asp:Panel ID="pnlsignup" runat="server">
+                        <li class="nav-item">
+						    <a class="nav-link" href="#" onclick="window.open('SignUp.aspx')">Sign Up</a>                            
+					    </li>                      
+                    </asp:Panel>
+                    <asp:Panel ID="pnllogin" runat="server">
+                        <li class="nav-item">    
+                                <a class="nav-link" href="login.aspx">Login</a>
+                            </li>
+                    </asp:Panel>                            
+                    <asp:Panel ID="pnlusername" runat="server">
+                        <li class="nav-item dropdown">
+                            <a href="#" class="dropbtn"><asp:Label ID="lblusername" runat="server"></asp:Label> <i class="fa fa-caret-down"></i></a>
+						    <ul class="dropdown-content">
+                                <li>
+                                    <asp:LinkButton ID="logout" runat="server" OnClick="logout_Click" CssClass="sub">Logout</asp:LinkButton>
+                                </li>   
+                                <li><asp:LinkButton ID="xeminfo" runat="server" OnClick="xeminfo_Click" CssClass="sub">View Profile</asp:LinkButton></li>
+						    </ul>
+                        </li>                        
+                    </asp:Panel>
+                    <asp:Panel ID="pnlavatar" runat="server">
+                        <li class="nav-item">
+                            <asp:Image ID="Image1" runat="server" Height="34px" Width="34px"/>
+                        </li>
+                    </asp:Panel>
+				   <li class="nav-item">
+                        <i class="fa fa-shopping-cart"></i>
+                        (<asp:Label ID="Label1" runat="server" Text="0"></asp:Label>)
+                    </li>
+				</ul>
+			</div>
+		</nav>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder></div>
+    <footer><hr style="width:100%"/>
+		<div class="container" id="footer">
+			<div class="row">
+				<div class="col-xl-3">
+					<a href="#">Tìm hiểu về mua trả góp</a><br>
+					<a href="#">Chính sách bảo hành</a><br>
+					<a href="#">Chính sách đổi trả</a><br>
+					<a href="#">Giao hàng & thanh toán</a><br>
+				</div>
+				<div class="col-xl-3">
+					<a href="#">Giới thiệu công ty(mwg.vn)</a><br>
+					<a href="#">Tuyển dụng</a><br>
+					<a href="#">Gửi góp ý, khiếu nại</a><br>
+					<a href="#">Tìm siêu thị (1744 shop)</a><br>
+				</div>
+				<div class="col-xl-4">
+					Gọi mua hàng : <b>1800.1060</b>  (7:30 - 22:30)<br>
+					Gọi khiếu nại: <b>1800.1062</b>  (8:00 - 21:30)<br>
+					Gọi bảo hành: <b>1800.1064</b>   (8:00 - 21:00)<br>
+					Hỗ trợ kỹ thuật: <b>1800.1763</b>(7:30 - 22:00)<br>
+					<a href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=20098"><img src="image/footer.png" style="width: 100px;"></a>
+				</div>
+				<div class="col-xl-2 icon">
+					<a href="https://www.facebook.com/thegioididongcom" style="color:blue"><i class="fa fa-facebook-square" style="color: blue;font-size: 15px"></i> 3.2tr</a>|
+					<a href="https://www.youtube.com/user/TGDDVideoReviews?sub_confirmation=1"><i class="fa fa-youtube-square" style="color: red;font-size: 15px"></i></a></br>
+					Website cùng tập đoàn:
+					<a href="https://www.dienmayxanh.com/"><img src="image/dmx.png" style="width: 120px;"></a><br/>
+					<a href="https://www.bachhoaxanh.com/"><img src="image/bhx.png" style="width: 120px;"></a><br/>
+				</div>
+			</div>
+            </div>
+            <div class="footer" style="width:100%">
+			    © 2017. Công ty cổ phần Thế Giới Di Động. GPDKKD: 0303217354 do sở KH & ĐT TP.HCM cấp ngày 02/01/2007. GP số 22/GP-ICP-STTTT do Sở TTTT TP HCM cấp ngày 20/03/2012. Địa chỉ: 128 Trần Quang Khải, P. Tân Định, Q.1, TP.Hồ Chí Minh. Điện thoại: 18001060. Email: cskh@thegioididong.com. Chịu trách nhiệm nội dung: Huỳnh Văn Tốt.  <a href="https://www.thegioididong.com/tos" style="color: white;">Xem chính sách sử dụng web</a>
+		    </div>
+		
+    </footer>
+    </form>
+</body>
+</html>
