@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\DoAnLTWEB\\DemoApplication.csproj": {}
+    "D:\\WebApp\\doan-dotnet\\DemoApplication.csproj": {}
   },
   "projects": {
-    "D:\\DoAnLTWEB\\DemoApplication.csproj": {
+    "D:\\WebApp\\doan-dotnet\\DemoApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DoAnLTWEB\\DemoApplication.csproj",
+        "projectUniqueName": "D:\\WebApp\\doan-dotnet\\DemoApplication.csproj",
         "projectName": "DemoApplication",
-        "projectPath": "D:\\DoAnLTWEB\\DemoApplication.csproj",
-        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "D:\\DoAnLTWEB\\obj\\",
+        "projectPath": "D:\\WebApp\\doan-dotnet\\DemoApplication.csproj",
+        "packagesPath": "C:\\Users\\chivi\\.nuget\\packages\\",
+        "outputPath": "D:\\WebApp\\doan-dotnet\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\chivi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -85,7 +85,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -97,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

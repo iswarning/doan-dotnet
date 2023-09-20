@@ -28,7 +28,7 @@ namespace DemoApplication.Middleware
                     context.Response.Redirect("/Identity/Account/Login");
                 }
 
-                if (context.User.IsInRole("admin"))
+                if (!context.User.IsInRole("admin"))
                 {
                     Console.WriteLine("CheckAccessAdminMiddleware: You have not permission to access this resource");
                     await Task.Run(async () =>

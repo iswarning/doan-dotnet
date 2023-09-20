@@ -1,4 +1,5 @@
 ﻿using System;
+using DemoApplication.Models;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DemoApplication.Migrations
@@ -215,7 +216,19 @@ namespace DemoApplication.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Product");
+
+            migrationBuilder.DropTable(
+                name: "Category");
+
+            migrationBuilder.DropTable(
+                name: "Comment");
+
+            migrationBuilder.DropTable(
+                name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "OrderDetail");
         }
     }
 }
